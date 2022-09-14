@@ -1,51 +1,74 @@
 #include "main.h"
+
 /**
-  * times_table - The entry point of the function
-  * @void: The function takes no parameters
-  *
-  * Description: This is a function that prints the 9 times table, starting
-  * with 0.
-  */
+ * times_table - prints the 9 times table starting with 0
+ *
+ * Return: 0 and prints the table on stdout
+ */
+
 void times_table(void)
 {
-	int firstnum, secondnum, multiplication_result;
+	int i;
+	int j;
+	int res;
 
-	firstnum = 0;
-	while (firstnum < 10)
+	for (i = 0 ; i <= 9 ; i++)
 	{
-		secondnum = 0;
-		while (secondnum < 10)
+		for (j = 0; j <= 9 ; j++)
 		{
-			multiplication_result = firstnum * secondnum;
-			if (secondnum != 9)
+			res = i * j;
+			if (res < 10)
 			{
-				if ((multiplication_result / 10) == 0)
-				{
-					_putchar(multiplication_result + '0');
-					_putchar(',');
-					_putchar(' ');
-				}
-				else
-				{
-					_putchar((multiplication_result / 10) + '0');
-					_putchar((multiplication_result % 10) + '0');
-					_putchar(',');
-					_putchar(' ');
-				}
+				_putchar(res + '0');
 			}
-			else
+			else if (res < 99)
 			{
-				if ((multiplication_result / 10) == 0)
-					_putchar(multiplication_result + '0');
-				else
-				{
-					_putchar((multiplication_result / 10) + '0');
-					_putchar((multiplication_result % 10) + '0');
-				}
+				_putchar(get_first(res) + '0');
+				_putchar(get_last(res) + '0');
 			}
-			secondnum++;
+
+			if (j < 9)
+			{
+				_putchar(',');
+				_putchar(' ');
+				if ((i * (j + 1)) < 10)
+					_putchar(' ');
+			}
 		}
-		firstnum++;
-		_putchar('\n')
+		_putchar('\n');
 	}
+}
+
+/**
+ * get_first - obtains the first digit of the input number
+ * @n: input number from which the first digit is obtained
+ *
+ * Return: the first digit
+ */
+
+int get_first(int n)
+{
+	if (n < 10)
+	{
+		n = 0;
+	}
+	while (n >= 10)
+	{
+		n = n / 10;
+	}
+
+	return (n);
+}
+
+/**
+ * get_last - obtains the last digit of the input number
+ * @m: input number from which the last digit is obtaind
+ *
+ * Return: the last digit of m
+ */
+
+int get_last(int m)
+{
+	m = m % 10;
+	return (m);
 }
