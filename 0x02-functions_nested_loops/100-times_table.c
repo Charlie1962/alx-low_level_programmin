@@ -1,71 +1,41 @@
-#include "main.h"
+#include"main.h"
+
 /**
- * print_times_table - The entry point of the function
- * @n : The operand that specifies the size of time table
+ * print_times_table - prints time table of n
  *
- * Description: This a function that prints the n times table, starting
- * with 0. If n is greater than 15 or less than 0 the function should not
- * print anything.
- */
+ * @n: takes number input
+*/
+
 void print_times_table(int n)
 {
-	int firstnum, secondnum, multiplication_result;
+	int prod, mult, num;
 
-	if (n <= 15)
+	if (n <= 15 && n >= 0)
 	{
-		firstnum = 0;
-		while (firstnum <= n)
+		for (num = 0; num <= n; ++num)
 		{
-			secondnum = 0;
-			while (secondnum <= n)
+			_putchar(48);
+			for (mult = 1; mult <= n; ++mult)
 			{
-				multiplication_result = firstnum * secondnum;
-				if (secondnum != n)
+				_putchar(',');
+				_putchar(' ');
+
+				prod = num * mult;
+
+				if (prod <= 9)
+					_putchar(' ');
+				if (prod <= 99)
+					_putchar(' ');
+
+				if (prod >= 100)
 				{
-					if ((multiplication_result / 10) == 0)
-					{
-						_putchar(multiplication_result + '0');
-						_putchar(',');
-						_putchar(' ');
-					}
-					else if ((multiplication_result / 10) > 9)
-					{
-						_putchar((multiplication_result / 100) + '0');
-						_putchar(((multiplication_result % 100) / 10) + '0');
-						_putchar((multiplication_result % 10) + '0');
-						_putchar(',');
-						_putchar(' ');
-					}
-					else
-					{
-						_putchar((multiplication_result / 10) + '0');
-						_putchar((multiplication_result % 10) + '0');
-						_putchar(',');
-						_putchar(' ');
-					}
-				}
-				else
-				{
-					if ((multiplication_result / 10) == 0)
-						_putchar(multiplication_result + '0');
-					else if ((multiplication_result / 10) > 9)
-					{
-						_putchar((multiplication_result / 100) + '0');
-						_putchar(((multiplication_result % 100) / 10) + '0');
-						_putchar((multiplication_result % 10) + '0');
-					}
-					else
-					{
-						_putchar((multiplication_result / 10) + '0');
-						_putchar((multiplication_result % 10) + '0');
-					}
-				}
-				secondnum++;
+					_putchar((prod / 100) + 48);
+					_putchar((prod / 10) % 10 + 48);
+				} else if (prod <= 99 && prod >= 10)
+					_putchar((prod / 10) + 48);
+				_putchar((prod % 10) + 48);
 			}
-			firstnum++;
 			_putchar('\n');
 		}
 	}
-	else
-		return;
 }
